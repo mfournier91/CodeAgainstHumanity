@@ -5,7 +5,7 @@ angular
   CAHctrlFunction
 ]);
 
-function CAHctrlFunction() {
+function CAHctrlFunction($scope) {
   var vm = this;
   console.log('controller hit');
   vm.doEet = "Hello World";
@@ -13,6 +13,14 @@ function CAHctrlFunction() {
   var quizItem = quizItems[Math.floor(Math.random()*quizItems.length)]
   vm.quizQuestion = quizItem["question"];
   vm.quizAnswer = quizItem["answer"];
-  console.log(quizItem["question"]);
-  console.log(quizItem["answer"]);
+  vm.messages = [];
+  vm.newMessage = '';
+  vm.sendMessage = function() {
+    console.log("message sent");
+    console.log($scope.vm.newMessage);
+    vm.messages.push($scope.vm.newMessage)
+    console.log(vm.messages);
+
+  }
+
 }
