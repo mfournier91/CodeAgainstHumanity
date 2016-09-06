@@ -14,13 +14,19 @@ function CAHctrlFunction($scope) {
   vm.quizQuestion = quizItem["question"];
   vm.quizAnswer = quizItem["answer"];
   vm.messages = [];
-  vm.newMessage = '';
+  // vm.newMessage = '';
   vm.sendMessage = function() {
     console.log("message sent");
-    console.log($scope.vm.newMessage);
-    vm.messages.push($scope.vm.newMessage)
+    //console.log($scope.vm.newMessage);
+    socket.emit('chat message', $scope.vm.newMessage)
+    }
+    socket.on('chat message', function(msg){
+      console.log("hello!!!");
+      $scope.$apply(function(){
+        vm.messages.push(msg)
+        console.log(msg);
+      })
+    })
     console.log(vm.messages);
-
-  }
 
 }
